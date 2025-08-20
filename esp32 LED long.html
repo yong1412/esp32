@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>My ESP32 Control</title>
+    <style>
+        body { 
+            font-family: Arial; 
+            text-align: center; 
+            margin-top: 50px; 
+            background-color: #f0f0f0;
+        }
+        .btn {
+            padding: 20px 40px;
+            font-size: 24px;
+            margin: 10px;
+            border: none;
+            border-radius: 10px;
+            cursor: pointer;
+            width: 200px;
+        }
+        #onBtn {
+            background-color: #4CAF50; /* Green */
+            color: white;
+        }
+        #offBtn {
+            background-color: #f44336; /* Red */
+            color: white;
+        }
+    </style>
+</head>
+<body>
+
+    <h2>Control My ESP32 LED</h2>
+
+    <!-- Buttons that will open the Blynk API URL when clicked -->
+    <button class="btn" id="onBtn" onclick="turnOn()">TURN ON</button><br>
+    <button class="btn" id="offBtn" onclick="turnOff()">TURN OFF</button>
+
+    <script>
+        // Your Blynk Auth Token
+        const authToken = 'DT7heRmTEhDmGXBu2siZ5feQucvdAaQ2'; // <<< REPLACE THIS!
+
+        // Function to turn the LED ON
+        function turnOn() {
+            // This is the exact URL you tested in your browser
+            const url = `https://blynk.cloud/external/api/update?token=${authToken}&V0=1`;
+            // Open the URL in a hidden iframe (so it doesn't navigate away from your dashboard)
+            fetch(url).then(response => console.log('LED turned ON'));
+        }
+
+        // Function to turn the LED OFF
+        function turnOff() {
+            const url = `https://blynk.cloud/external/api/update?token=${authToken}&V0=0`;
+            fetch(url).then(response => console.log('LED turned OFF'));
+        }
+    </script>
+
+</body>
+</html>
